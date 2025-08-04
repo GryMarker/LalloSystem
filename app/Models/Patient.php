@@ -16,4 +16,9 @@ class Patient extends Model
         'address',
         'contact_number',
     ];
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
 }
