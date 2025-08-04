@@ -1,0 +1,396 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: #e3f2fd;
+}
+
+/* Sidebar always visible on the left */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 260px;
+    background-color: #fff;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+    z-index: 1000;
+}
+
+/* Sidebar header / logo */
+.sidebar .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.logo .logo-name {
+    color: #333;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* Sidebar navigation structure */
+.sidebar .sidebar-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 70px);
+    padding: 0 16px;
+}
+
+.sidebar-content .list {
+    list-style: none;
+}
+
+.list .nav-link {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    padding: 14px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.lists .nav-link:hover {
+    background-color: #4070f4;
+}
+
+.nav-link .icon {
+    margin-right: 14px;
+    font-size: 20px;
+    color: #707070;
+}
+
+.nav-link .link {
+    font-size: 16px;
+    color: #707070;
+    font-weight: 400;
+}
+
+.lists .nav-link:hover .icon,
+.lists .nav-link:hover .link {
+    color: #fff;
+}
+
+/* Main content to the right of the sidebar */
+main {
+    margin-left: 260px;
+    padding: 24px;
+}
+
+/* Optional: Sticky topbar if needed */
+nav {
+    position: fixed;
+    top: 0;
+    left: 260px;
+    height: 70px;
+    width: calc(100% - 260px);
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+/* Patients style */
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: #2d3748;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #4a5568;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #718096;
+}
+
+/* Typography */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Container & Headings */
+.content-section {
+    padding: 2rem;
+}
+
+.main-content h1 {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 600;
+    color: #1f2937; /* text-gray-800 */
+}
+
+.dark .main-content h1 {
+    color: #ffffff; /* dark:text-white */
+}
+
+/* Section Box */
+.bg-white {
+    background-color: #ffffff;
+}
+
+.dark .bg-white {
+    background-color: #2d3748; /* dark:bg-gray-800 */
+}
+
+.rounded-xl {
+    border-radius: 0.75rem;
+}
+
+.shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.transition-all {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Header Row */
+.border-b {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .border-b {
+    border-bottom: 1px solid #4a5568;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.sm\:flex-row {
+    flex-direction: row;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.items-start {
+    align-items: flex-start;
+}
+
+/* Buttons */
+button#addPatientBtn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.15s ease-in-out;
+    outline: none;
+    background-color: #2563eb; /* bg-blue-600 */
+    color: white;
+}
+
+button#addPatientBtn:hover {
+    background-color: #1d4ed8; /* hover:bg-blue-700 */
+}
+
+button#addPatientBtn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #3b82f6; /* focus:ring-blue-500 */
+}
+
+.dark button#addPatientBtn:focus {
+    box-shadow: 0 0 0 2px #1a202c; /* dark:focus:ring-offset-gray-800 */
+}
+
+/* Table Styles */
+table#patientTable {
+    width: 100%;
+    font-size: 0.875rem; /* text-sm */
+    border-collapse: collapse;
+}
+
+table#patientTable th,
+table#patientTable td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+table#patientTable th {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.dark table#patientTable th {
+    color: #f7fafc;
+}
+
+table#patientTable td {
+    color: #374151;
+}
+
+.dark table#patientTable td {
+    color: #e2e8f0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-gray-500 {
+    color: #6b7280;
+}
+
+.text-blue-600 {
+    color: #2563eb;
+}
+
+.text-blue-600:hover {
+    text-decoration: underline;
+}
+
+.text-red-600 {
+    color: #dc2626;
+}
+
+.text-red-600:hover {
+    text-decoration: underline;
+}
+table#patientTable thead {
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    background-color: #f9fafb;
+}
+
+.dark table#patientTable thead {
+    background-color: #374151;
+    color: #f9fafb;
+}
+
+/* Row hover */
+table#patientTable tbody tr:hover {
+    background-color: #ebf8ff;
+}
+
+.dark table#patientTable tbody tr:hover {
+    background-color: #4b5563;
+}
+
+/* Rounded corners */
+table#patientTable {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* Actions column */
+table#patientTable td a,
+table#patientTable td button {
+    transition: color 0.2s ease-in-out;
+    font-weight: 500;
+}
+/* Improved button spacing in table actions */
+table#patientTable td a,
+table#patientTable td button {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    display: inline-flex;
+    align-items: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+/* Better action hover */
+table#patientTable td a:hover,
+table#patientTable td button:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+/* Better overall hover effect */
+table#patientTable tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+.dark table#patientTable tbody tr:hover {
+    background-color: #374151;
+}
+
+/* Font override if needed */
+body {
+    font-family: 'Inter', 'Poppins', sans-serif;
+}
+
+/* Zebra striping */
+table#patientTable tbody tr:nth-child(odd) {
+    background-color: #f9fafb;
+}
+.dark table#patientTable tbody tr:nth-child(odd) {
+    background-color: #2f3542;
+}
+
+/* Sticky header */
+table#patientTable thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Hover scale on rows */
+table#patientTable tbody tr:hover {
+    transform: scale(1.005);
+    background-color: #f1f5f9;
+}
+.dark table#patientTable tbody tr:hover {
+    background-color: #374151;
+}
+
+/* Smooth transition */
+table#patientTable tr {
+    transition: all 0.2s ease-in-out;
+}
+
+.main-content, .content-section {
+    position: static !important;
+    overflow: visible !important;
+}
+[x-cloak] {
+    display: none !important;
+}
