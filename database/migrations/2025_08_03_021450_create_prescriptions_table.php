@@ -27,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('prescriptions');
+        // Dropped in patients migration for proper order
     }
 };
