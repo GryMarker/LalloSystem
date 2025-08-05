@@ -14,8 +14,9 @@ class DatabaseSeeder extends Seeder
         // Run custom seeders
         $this->call([
             UserSeeder::class,
-            
-            
+            MedicineSeeder::class,
+            PrescriptionSeeder::class,
+            HealthMonitoringSeeder::class,
         ]);
     }
 }
