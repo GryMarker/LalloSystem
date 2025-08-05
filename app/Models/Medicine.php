@@ -22,4 +22,19 @@ class Medicine extends Model
     {
         return $this->hasMany(MedicinePickup::class);
     }
+
+    public function prescriptions()
+    {
+        return $this->hasMany(Prescription::class);
+    }
+
+    public function dosageReminders()
+    {
+        return $this->hasMany(DosageReminder::class);
+    }
+
+    public function dosageLogs()
+    {
+        return $this->hasMany(DosageLog::class);
+    }
 } 

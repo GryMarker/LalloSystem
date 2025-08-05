@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\MedicinePickupController;
+use App\Http\Controllers\DosageReminderController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,6 +44,17 @@ Route::get('/staff/medicine-pickups', [MedicinePickupController::class, 'index']
 Route::post('/medicine-pickups', [MedicinePickupController::class, 'store'])->name('medicine-pickups.store');
 Route::patch('/medicine-pickups/{id}/pickup', [MedicinePickupController::class, 'markAsPickedUp'])->name('medicine-pickups.pickup');
 Route::delete('/medicine-pickups/{id}', [MedicinePickupController::class, 'destroy'])->name('medicine-pickups.destroy');
+
+// Dosage Reminders
+Route::get('/staff/dosage-reminders', [DosageReminderController::class, 'index'])->name('staff.dosage-reminders');
+Route::post('/dosage-reminders', [DosageReminderController::class, 'store'])->name('dosage-reminders.store');
+Route::get('/dosage-reminders/{id}', [DosageReminderController::class, 'show'])->name('dosage-reminders.show');
+Route::put('/dosage-reminders/{id}', [DosageReminderController::class, 'update'])->name('dosage-reminders.update');
+Route::delete('/dosage-reminders/{id}', [DosageReminderController::class, 'destroy'])->name('dosage-reminders.destroy');
+Route::patch('/dosage-logs/{id}/taken', [DosageReminderController::class, 'markAsTaken'])->name('dosage-logs.taken');
+Route::patch('/dosage-logs/{id}/skipped', [DosageReminderController::class, 'markAsSkipped'])->name('dosage-logs.skipped');
+Route::get('/staff/today-reminders', [DosageReminderController::class, 'getTodayReminders'])->name('staff.today-reminders');
+Route::get('/staff/patient-reminders/{patientId}', [DosageReminderController::class, 'getPatientReminders'])->name('staff.patient-reminders');
 
 // Admin Pages
 Route::get('/admin/dashboard', function () {

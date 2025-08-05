@@ -9,7 +9,7 @@
             <li class="list"><a href="{{ route('staff.patients') }}" class="nav-link"><i class="bx bx-user icon"></i><span class="link">Patients</span></a></li>
             <li class="list"><a href="{{ route('staff.appointments') }}" class="nav-link"><i class="bx bx-calendar icon"></i><span class="link">Appointments</span></a></li>
             <li class="list"><a href="{{ route('staff.medicine') }}" class="nav-link"><i class="bx bx-capsule icon"></i><span class="link">Medicine Pick-Up</span></a></li>
-            <li class="list"><a href="#" class="nav-link"><i class="bx bx-time-five icon"></i><span class="link">Dosage Reminders</span></a></li>
+            <li class="list"><a href="{{ route('staff.dosage-reminders') }}" class="nav-link"><i class="bx bx-time-five icon"></i><span class="link">Dosage Reminders</span></a></li>
             <li class="list"><a href="#" class="nav-link"><i class="bx bx-refresh icon"></i><span class="link">Follow-Up Checkups</span></a></li>
             <li class="list"><a href="#" class="nav-link"><i class="bx bx-heart icon"></i><span class="link">Health Monitoring</span></a></li>
             <li class="list"><a href="#" class="nav-link"><i class="bx bx-bell icon"></i><span class="link">Notifications</span></a></li>
