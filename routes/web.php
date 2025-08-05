@@ -8,8 +8,14 @@ use App\Http\Controllers\AppointmentController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+//login
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+//logout
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/')->with('success', 'You have been logged out.');
+})->name('logout');
 
 // Staff Pages
 Route::get('/staff/dashboard', function () {
