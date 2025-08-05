@@ -13,9 +13,13 @@ return new class extends Migration {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade');
-            $table->enum('type', ['medicine_pickup', 'checkup']);
+            $table->foreignId('staff_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->enum('type', ['medicine_pickup', 'checkup', 'consultation', 'follow_up']);
             $table->dateTime('scheduled_at');
-            $table->string('status')->default('pending'); // pending, completed, missed
+            $table->string('status')->default('pending'); // pending, confirmed, completed, cancelled, missed
+            $table->text('notes')->nullable();
+            $table->integer('duration')->default(30); // in minutes
+            $table->string('location')->nullable();
             $table->timestamps();
         });
 
@@ -26,6 +30,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('appointments');
+        // Dropped in patients migration for proper order
     }
 };

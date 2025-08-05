@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\AppointmentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,9 +15,6 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/staff/dashboard', function () {
     return view('staff.dashboard');
 })->name('staff.dashboard');
-
-
-
 // Patient
 Route::get('/staff/patients', [PatientController::class, 'index'])->name('staff.patients');
 Route::resource('patients', PatientController::class)->except(['create', 'edit', 'show']);
@@ -25,15 +23,15 @@ Route::put('/patients/{id}', [PatientController::class, 'update'])->name('patien
 Route::get('/patients/search', [PatientController::class, 'search'])->name('patients.search');
 
 
-
-
-
-
-//Appointments
-
-Route::get('/staff/appointments', function () {
-    return view('staff.appointments');
-})->name('staff.appointments');
+// Appointments
+Route::get('/staff/appointments', [AppointmentController::class, 'index'])->name('staff.appointments');
+Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
+Route::get('/appointments/{appointment}/edit', [AppointmentController::class, 'edit'])->name('appointments.edit');
+Route::put('/appointments/{appointment}', [AppointmentController::class, 'update'])->name('appointments.update');
+Route::delete('/appointments/{appointment}', [AppointmentController::class, 'destroy'])->name('appointments.destroy');
+Route::patch('/appointments/{appointment}/status', [AppointmentController::class, 'updateStatus'])->name('appointments.updateStatus');
+Route::get('/appointments/today', [AppointmentController::class, 'getTodayAppointments'])->name('appointments.today');
+Route::get('/appointments/upcoming', [AppointmentController::class, 'getUpcomingAppointments'])->name('appointments.upcoming');
 
 Route::get('/staff/medicine', function () {
     return view('staff.medicine');
