@@ -6,6 +6,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\MedicinePickupController;
 use App\Http\Controllers\DosageReminderController;
+use App\Http\Controllers\HealthMonitoringController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -55,6 +56,17 @@ Route::patch('/dosage-logs/{id}/taken', [DosageReminderController::class, 'markA
 Route::patch('/dosage-logs/{id}/skipped', [DosageReminderController::class, 'markAsSkipped'])->name('dosage-logs.skipped');
 Route::get('/staff/today-reminders', [DosageReminderController::class, 'getTodayReminders'])->name('staff.today-reminders');
 Route::get('/staff/patient-reminders/{patientId}', [DosageReminderController::class, 'getPatientReminders'])->name('staff.patient-reminders');
+
+// Health Monitoring
+Route::get('/staff/health-monitoring', [HealthMonitoringController::class, 'index'])->name('staff.health-monitoring');
+Route::post('/health-monitoring', [HealthMonitoringController::class, 'store'])->name('health-monitoring.store');
+Route::get('/health-monitoring/{id}', [HealthMonitoringController::class, 'show'])->name('health-monitoring.show');
+Route::put('/health-monitoring/{id}', [HealthMonitoringController::class, 'update'])->name('health-monitoring.update');
+Route::delete('/health-monitoring/{id}', [HealthMonitoringController::class, 'destroy'])->name('health-monitoring.destroy');
+Route::get('/staff/patient-health-history/{patientId}', [HealthMonitoringController::class, 'getPatientHistory'])->name('staff.patient-health-history');
+Route::get('/staff/critical-alerts', [HealthMonitoringController::class, 'getCriticalAlerts'])->name('staff.critical-alerts');
+Route::get('/staff/today-health-records', [HealthMonitoringController::class, 'getTodayRecords'])->name('staff.today-health-records');
+Route::post('/health-monitoring/report', [HealthMonitoringController::class, 'generateReport'])->name('health-monitoring.report');
 
 // Admin Pages
 Route::get('/admin/dashboard', function () {

@@ -41,4 +41,9 @@ class Patient extends Model
     {
         return $this->hasMany(DosageLog::class);
     }
+
+    public function healthMonitorings()
+    {
+        return $this->hasMany(HealthMonitoring::class);
+    }
 }
