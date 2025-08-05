@@ -245,9 +245,9 @@
             const img = document.createElement('img');
             img.src = icons[Math.floor(Math.random() * icons.length)];
             img.className = 'floating-icon';
-            img.style.top = '100vh';
+            img.style.top = '50vh';
             img.style.left = `${Math.random() * 100}%`;
-            img.style.animationDelay = `${Math.random() * 5}s`;
+            
             img.style.animationDuration = `${6 + Math.random() * 4}s`;
             img.style.width = `${40 + Math.random() * 30}px`;
             container.appendChild(img);
