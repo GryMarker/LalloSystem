@@ -33,4 +33,9 @@ class Appointment extends Model
     {
         return $this->belongsTo(User::class, 'staff_id');
     }
+
+    public function followUpCheckups()
+    {
+        return $this->hasMany(FollowUpCheckup::class);
+    }
 } 

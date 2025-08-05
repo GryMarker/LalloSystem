@@ -46,4 +46,9 @@ class Patient extends Model
     {
         return $this->hasMany(HealthMonitoring::class);
     }
+
+    public function followUpCheckups()
+    {
+        return $this->hasMany(FollowUpCheckup::class);
+    }
 }

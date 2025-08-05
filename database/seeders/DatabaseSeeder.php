@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             MedicineSeeder::class,
             PrescriptionSeeder::class,
             HealthMonitoringSeeder::class,
+            FollowUpCheckupSeeder::class,
         ]);
     }
 }

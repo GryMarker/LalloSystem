@@ -51,6 +51,11 @@ class HealthMonitoring extends Model
         return $this->belongsTo(Patient::class);
     }
 
+    public function followUpCheckups()
+    {
+        return $this->hasMany(FollowUpCheckup::class);
+    }
+
     public function getStatusBadgeClass()
     {
         return match($this->status) {

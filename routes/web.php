@@ -7,6 +7,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\MedicinePickupController;
 use App\Http\Controllers\DosageReminderController;
 use App\Http\Controllers\HealthMonitoringController;
+use App\Http\Controllers\FollowUpCheckupController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -67,6 +68,22 @@ Route::get('/staff/patient-health-history/{patientId}', [HealthMonitoringControl
 Route::get('/staff/critical-alerts', [HealthMonitoringController::class, 'getCriticalAlerts'])->name('staff.critical-alerts');
 Route::get('/staff/today-health-records', [HealthMonitoringController::class, 'getTodayRecords'])->name('staff.today-health-records');
 Route::post('/health-monitoring/report', [HealthMonitoringController::class, 'generateReport'])->name('health-monitoring.report');
+
+// Follow-Up Checkups
+Route::get('/staff/follow-up-checkups', [FollowUpCheckupController::class, 'index'])->name('staff.follow-up-checkups');
+Route::post('/follow-up-checkups', [FollowUpCheckupController::class, 'store'])->name('follow-up-checkups.store');
+Route::get('/follow-up-checkups/{id}', [FollowUpCheckupController::class, 'show'])->name('follow-up-checkups.show');
+Route::put('/follow-up-checkups/{id}', [FollowUpCheckupController::class, 'update'])->name('follow-up-checkups.update');
+Route::delete('/follow-up-checkups/{id}', [FollowUpCheckupController::class, 'destroy'])->name('follow-up-checkups.destroy');
+Route::patch('/follow-up-checkups/{id}/complete', [FollowUpCheckupController::class, 'markAsCompleted'])->name('follow-up-checkups.complete');
+Route::patch('/follow-up-checkups/{id}/cancel', [FollowUpCheckupController::class, 'markAsCancelled'])->name('follow-up-checkups.cancel');
+Route::patch('/follow-up-checkups/{id}/no-show', [FollowUpCheckupController::class, 'markAsNoShow'])->name('follow-up-checkups.no-show');
+Route::get('/staff/urgent-follow-ups', [FollowUpCheckupController::class, 'getUrgentFollowUps'])->name('staff.urgent-follow-ups');
+Route::get('/staff/overdue-follow-ups', [FollowUpCheckupController::class, 'getOverdueFollowUps'])->name('staff.overdue-follow-ups');
+Route::get('/staff/today-follow-ups', [FollowUpCheckupController::class, 'getTodayFollowUps'])->name('staff.today-follow-ups');
+Route::get('/staff/patient-follow-ups/{patientId}', [FollowUpCheckupController::class, 'getPatientFollowUps'])->name('staff.patient-follow-ups');
+Route::get('/staff/create-follow-up-from-health/{healthMonitoringId}', [FollowUpCheckupController::class, 'createFromHealthMonitoring'])->name('staff.create-follow-up-from-health');
+Route::post('/follow-up-checkups/report', [FollowUpCheckupController::class, 'generateReport'])->name('follow-up-checkups.report');
 
 // Admin Pages
 Route::get('/admin/dashboard', function () {
