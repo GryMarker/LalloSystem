@@ -10,15 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('health_monitorings', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade');
-            $table->date('recorded_at');
-            $table->float('temperature')->nullable();
-            $table->integer('blood_pressure_systolic')->nullable();
-            $table->integer('blood_pressure_diastolic')->nullable();
-            $table->integer('pulse_rate')->nullable();
-            $table->text('notes')->nullable();
+            $table->string('title');
+            $table->text('message');
+            $table->enum('type', ['appointment', 'medicine', 'general'])->default('general');
+            $table->boolean('is_read')->default(false);
             $table->timestamps();
         });
 

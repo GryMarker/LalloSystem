@@ -4,25 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Patient extends Model
+class Medicine extends Model
 {
-    protected $table = 'patients';
-
-    // Add this to allow mass assignment for form inputs
     protected $fillable = [
         'name',
-        'birthdate',
-        'gender',
-        'address',
-        'contact_number',
+        'brand',
+        'dosage',
+        'stock_quantity',
+        'expiration_date',
     ];
 
-    public function appointments()
-    {
-        return $this->hasMany(Appointment::class);
-    }
+    protected $casts = [
+        'expiration_date' => 'date',
+    ];
 
-    public function medicinePickups()
+    public function pickups()
     {
         return $this->hasMany(MedicinePickup::class);
     }
@@ -41,9 +37,4 @@ class Patient extends Model
     {
         return $this->hasMany(DosageLog::class);
     }
-
-    public function healthMonitorings()
-    {
-        return $this->hasMany(HealthMonitoring::class);
-    }
-}
+} 
