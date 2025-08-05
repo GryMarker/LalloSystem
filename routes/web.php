@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\MedicinePickupController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,6 +37,12 @@ Route::get('/appointments/upcoming', [AppointmentController::class, 'getUpcoming
 Route::get('/staff/medicine', function () {
     return view('staff.medicine');
 })->name('staff.medicine');
+
+// Medicine Pickups
+Route::get('/staff/medicine-pickups', [MedicinePickupController::class, 'index'])->name('staff.medicine-pickups');
+Route::post('/medicine-pickups', [MedicinePickupController::class, 'store'])->name('medicine-pickups.store');
+Route::patch('/medicine-pickups/{id}/pickup', [MedicinePickupController::class, 'markAsPickedUp'])->name('medicine-pickups.pickup');
+Route::delete('/medicine-pickups/{id}', [MedicinePickupController::class, 'destroy'])->name('medicine-pickups.destroy');
 
 // Admin Pages
 Route::get('/admin/dashboard', function () {

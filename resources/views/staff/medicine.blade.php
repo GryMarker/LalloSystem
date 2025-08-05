@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="main-content">
-        <!-- Your dashboard content here -->
-        
+        <script>
+            window.location.href = "{{ route('staff.medicine-pickups') }}";
+        </script>
     </div>
 @endsection
