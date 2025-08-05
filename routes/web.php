@@ -14,11 +14,16 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/staff/dashboard', function () {
     return view('staff.dashboard');
 })->name('staff.dashboard');
+
+
+
 // Patient
 Route::get('/staff/patients', [PatientController::class, 'index'])->name('staff.patients');
 Route::resource('patients', PatientController::class)->except(['create', 'edit', 'show']);
 Route::get('/patients/{id}/edit', [PatientController::class, 'edit'])->name('patients.edit');
 Route::put('/patients/{id}', [PatientController::class, 'update'])->name('patients.update');
+Route::get('/patients/search', [PatientController::class, 'search'])->name('patients.search');
+
 
 
 

@@ -37,7 +37,26 @@
                 </div>
 
                 <br>
+                <form method="GET" action="{{ route('patients.index') }}" class="px-4 sm:px-6 mb-4">
+                    <div class="flex items-center gap-2">
+                        <input type="text" name="search" value="{{ request('search') }}"
+                            placeholder="Search patients by name, contact, or address..."
+                            class="w-full sm:max-w-xs px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                        <button type="submit"
+                            class="px-4 py-2 text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white rounded-md transition">
+                            Search
+                        </button>
+                        @if(request('search'))
+                            <a href="{{ route('patients.index') }}"
+                                class="px-4 py-2 text-sm font-medium bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-md transition">
+                                Clear
+                            </a>
+                        @endif
+                    </div>
+                </form>
+
                 <div class="p-4 sm:p-6 overflow-x-auto">
+
                     <table id="patientTable"
                         class="min-w-full bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
                         <thead
@@ -93,9 +112,20 @@
                             @endforelse
                         </tbody>
                     </table>
+                    
+                    
+
+
+
                 </div>
+
+                
+
             </section>
+
         </div>
+
+
 
         <!-- Modal (correctly inside x-data scope now) -->
         <!-- Modal -->
@@ -205,16 +235,18 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Birthdate</label>
-                            <input name="birthdate" type="date" x-model="editingPatient.birthdate" required class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 
-                                   bg-white dark:bg-gray-700 text-gray-900 dark:text-white 
-                                   focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                            <input name="birthdate" type="date" x-model="editingPatient.birthdate" required
+                                class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 
+                                                                           bg-white dark:bg-gray-700 text-gray-900 dark:text-white 
+                                                                           focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Gender</label>
-                            <select name="gender" x-model="editingPatient.gender" required class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 
-                                   bg-white dark:bg-gray-700 text-gray-900 dark:text-white 
-                                   focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <select name="gender" x-model="editingPatient.gender" required
+                                class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 
+                                                                           bg-white dark:bg-gray-700 text-gray-900 dark:text-white 
+                                                                           focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 <option value="">Select</option>
                                 <option>Male</option>
                                 <option>Female</option>
@@ -223,16 +255,18 @@
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Contact</label>
-                            <input name="contact_number" x-model="editingPatient.contact_number" required class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 
-                                   bg-white dark:bg-gray-700 text-gray-900 dark:text-white 
-                                   focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                            <input name="contact_number" x-model="editingPatient.contact_number" required
+                                class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 
+                                                                           bg-white dark:bg-gray-700 text-gray-900 dark:text-white 
+                                                                           focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
                         </div>
 
                         <div class="sm:col-span-2">
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Address</label>
-                            <input name="address" x-model="editingPatient.address" required class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 
-                                   bg-white dark:bg-gray-700 text-gray-900 dark:text-white 
-                                   focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                            <input name="address" x-model="editingPatient.address" required
+                                class="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 
+                                                                           bg-white dark:bg-gray-700 text-gray-900 dark:text-white 
+                                                                           focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
                         </div>
 
                     </div>
@@ -259,24 +293,24 @@
     </div>
 @endsection
 @push('scripts')
-<script>
-    function patientHandler() {
-        return {
-            showModal: false,
-            showEditModal: false,
-            editingPatient: {},
-            fetchPatient(id) {
-                fetch(`/patients/${id}/edit`)
-                    .then(response => response.json())
-                    .then(data => {
-                        this.editingPatient = data;
-                        this.showEditModal = true;
-                    })
-                    .catch(error => {
-                        console.error('Error fetching patient:', error);
-                    });
-            }
-        };
-    }
-</script>
+    <script>
+        function patientHandler() {
+            return {
+                showModal: false,
+                showEditModal: false,
+                editingPatient: {},
+                fetchPatient(id) {
+                    fetch(`/patients/${id}/edit`)
+                        .then(response => response.json())
+                        .then(data => {
+                            this.editingPatient = data;
+                            this.showEditModal = true;
+                        })
+                        .catch(error => {
+                            console.error('Error fetching patient:', error);
+                        });
+                }
+            };
+        }
+    </script>
 @endpush

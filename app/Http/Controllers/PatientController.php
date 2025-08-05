@@ -7,12 +7,20 @@ use App\Models\Patient;
 
 class PatientController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $patients = Patient::all();
-        return view('staff.patientsmngmt', compact('patients'));
+        $search = $request->input('search');
 
+        $patients = Patient::when($search, function ($query, $search) {
+            return $query->where('name', 'like', "%{$search}%")
+                ->orWhere('contact_number', 'like', "%{$search}%")
+                ->orWhere('address', 'like', "%{$search}%");
+        })->get(); 
+        return view('staff.patientsmngmt', compact('patients'));
     }
+
+
+
 
     public function store(Request $request)
     {
@@ -59,6 +67,9 @@ class PatientController extends Controller
 
         return redirect()->back()->with('success', 'Patient deleted successfully!');
     }
+
+
+
 
 
 
